@@ -1,0 +1,31 @@
+#!bin/bash
+
+#CUSTOM CHANGES
+
+echo "copying source files"
+cp -Rf /tmp/src/*.html ./
+
+echo "Start custom changes"
+
+DATE="2023-11-15"
+
+echo "Applicaiton built $DATE " > ./info.html
+echo "This is happening" >> ./info.html
+
+echo "Ending custom changes. Start wrapping"
+
+#END CUSTOM CHANGES
+
+#WRAPPING ORIGINAL ASSEMBLE
+
+/usr/libexec/s2i/assemble
+
+rc=$?
+
+if [ $rc -eq 0]; then
+	echo "Making post invocation changes"
+else
+	echo "Error: assemble failed"
+fi
+
+exit $rc
