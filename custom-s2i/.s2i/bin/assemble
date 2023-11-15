@@ -1,31 +1,31 @@
+######## CUSTOMIZATION STARTS HERE ############
 #!/bin/bash
 
-#CUSTOM CHANGES
-
-echo "copying source files"
+echo "---> Installing application source"
 cp -Rf /tmp/src/*.html ./
 
-echo "Start custom changes"
+DATE=`date "+%b %d, %Y @ %H:%M %p"`
 
-DATE="2023-11-15"
+echo "---> Creating info page"
+echo "Page built on $DATE" >> ./info.html
+echo "Proudly served by Apache HTTP Server version $HTTPD_VERSION" >> ./info.html
 
-echo "Applicaiton built $DATE " > ./info.html
-echo "This is happening" >> ./info.html
+echo "Making pre-invocation changes..."
 
-echo "Ending custom changes. Start wrapping"
+######## CUSTOMIZATION ENDS HERE ############
 
-#END CUSTOM CHANGES
-
-#WRAPPING ORIGINAL ASSEMBLE
+######## WRAPPING ORIGINAL ASSEMBLE ############
 
 /usr/libexec/s2i/assemble
 
 rc=$?
 
-if [ $rc -eq 0]; then
-	echo "Making post invocation changes"
+if [ $rc -eq 0 ]; then
+  echo "Making post-invocation changes..."
 else
-	echo "Error: assemble failed"
+  echo "Error: assemble failed!"
 fi
 
 exit $rc
+
+######## WRAPPING ORIGINAL ASSEMBLE END ############
