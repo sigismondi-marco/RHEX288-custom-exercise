@@ -1,6 +1,10 @@
 #!/bin/bash
 echo "Making pre-invocation changes..."
 
+cp ../../*.html ./
+
+ls -la ./
+
 /usr/libexec/s2i/assemble
 
 rc=$?
