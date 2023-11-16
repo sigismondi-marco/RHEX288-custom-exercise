@@ -1,21 +1,17 @@
 FROM registry.access.redhat.com/ubi8/nginx-120
 
-RUN echo "Resolving variables" && \
-    echo "${NGINX_CONF_PATH}"/ && \
-    echo "${NGINX_DEFAULT_CONF_PATH}"/ && \
-    echo "${NGINX_CONFIGURATION_PATH}"/
-
 # Add application sources
-ADD nginx.conf "${NGINX_CONF_PATH}"
-ADD nginx-default-cfg/*.conf "${NGINX_DEFAULT_CONF_PATH}"
-ADD nginx-cfg/*.conf "${NGINX_CONFIGURATION_PATH}"
+ADD nginx.conf /etc/nginx/
+ADD nginx-default-cfg/*.conf /opt/app-root/etc/nginx.default.d/
+ADD nginx-cfg/*.conf /opt/app-root/etc/nginx.d/
 ADD *.html ./
 ADD scripts/* /opt/app-root/bin/
 
+#Needed for execute chgrp and chmod
 USER root
 
-RUN chgrp -R 0 "${NGINX_CONF_PATH}"/ "${NGINX_DEFAULT_CONF_PATH}"/ "${NGINX_CONFIGURATION_PATH}"/ /opt/app-root/bin/ && \
-    chmod -R g=u "${NGINX_CONF_PATH}"/ "${NGINX_DEFAULT_CONF_PATH}"/ "${NGINX_CONFIGURATION_PATH}"/ /opt/app-root/bin/
+RUN chgrp -R 0 /etc/nginx/ /opt/app-root/etc/nginx.default.d/ /opt/app-root/etc/nginx.d/ /opt/app-root/bin/ && \
+    chmod -R g=u /etc/nginx/ /opt/app-root/etc/nginx.default.d/ /opt/app-root/etc/nginx.d/ /opt/app-root/bin/
 
 USER 1001
 
