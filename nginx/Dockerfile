@@ -12,7 +12,7 @@ USER root
 
 RUN chgrp -R 0 /etc/nginx/ /opt/app-root/etc/nginx.default.d/ /opt/app-root/etc/nginx.d/ /opt/app-root/bin/ && \
     chmod -R g=u /etc/nginx/ /opt/app-root/etc/nginx.default.d/ /opt/app-root/etc/nginx.d/ /opt/app-root/bin/ && \
-	chmod 775 /opt/app-root/bin/run.sh
+    chmod 775 /opt/app-root/bin/run.sh /opt/app-root/bin/test.sh
 
 USER 1001
 
