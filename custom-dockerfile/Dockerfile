@@ -10,6 +10,6 @@ COPY  ./scripts/run-app.sh /opt/app-root/bin/
 RUN   chown -R custom:custom /opt/app-root && \
       chmod -R 700 /opt/app-root
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD   /opt/app-root/bin/run.sh
