@@ -7,8 +7,8 @@ RUN   useradd custom && \
 
 COPY  ./scripts/run.sh /opt/app-root/bin/
 
-RUN   chown -R custom:custom /opt/app-root && \
-      chmod -R 700 /opt/app-root
+RUN   chown -R 0 /opt/app-root && \
+      chmod -R g=u /opt/app-root
 
 EXPOSE 8080
 
