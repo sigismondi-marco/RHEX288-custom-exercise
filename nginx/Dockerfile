@@ -7,4 +7,4 @@ ADD nginx-cfg/*.conf /opt/app-root/etc/nginx.d/
 ADD *.html ./
 ADD scripts/* /opt/app-root/bin/
 
-CMD /opt/app-root/src/run.sh
+CMD /opt/app-root/bin/run.sh
