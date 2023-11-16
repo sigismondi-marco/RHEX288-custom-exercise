@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "Just executing some linux command"
+exec echo "Just executing some linux command"
