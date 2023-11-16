@@ -1,10 +1,9 @@
 FROM registry.access.redhat.com/ubi8/nginx-120
 
-echo "Resolving variables"
-
-echo "${NGINX_CONF_PATH}"/ 
-echo "${NGINX_DEFAULT_CONF_PATH}"/ 
-echo "${NGINX_CONFIGURATION_PATH}"/
+RUN echo "Resolving variables" && \
+    echo "${NGINX_CONF_PATH}"/ && \
+    echo "${NGINX_DEFAULT_CONF_PATH}"/ && \
+    echo "${NGINX_CONFIGURATION_PATH}"/
 
 # Add application sources
 ADD nginx.conf "${NGINX_CONF_PATH}"
