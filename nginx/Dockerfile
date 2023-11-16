@@ -1,11 +1,10 @@
 FROM registry.access.redhat.com/ubi8/nginx-120
 
 # Add application sources
-ADD nginx.conf "${NGINX_CONF_PATH}"
-ADD nginx-default-cfg/*.conf "${NGINX_DEFAULT_CONF_PATH}"
-ADD nginx-cfg/*.conf "${NGINX_CONFIGURATION_PATH}"
+ADD nginx.conf /etc/nginx/
+ADD nginx-default-cfg/*.conf /opt/app-root/etc/nginx.default.d/
+ADD nginx-cfg/*.conf /opt/app-root/etc/nginx.d/
 ADD *.html ./
-ADD scripts/* /opt/app-root/src/
+ADD scripts/* /opt/app-root/bin/
 
 CMD /opt/app-root/src/run.sh
-
