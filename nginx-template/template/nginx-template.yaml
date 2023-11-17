@@ -192,3 +192,7 @@ parameters:
   from: '[a-zA-Z0-9]{40}'
   generate: expression
   name: GENERIC_WEBHOOK_SECRET
+- description: The Openshift template where to install the template
+  displayName: Template namespace
+  name: TEMPLATE_NAMESPACE
+  value: openshift
