@@ -1,0 +1,19 @@
+#!/bin/bash
+echo "Before assembling"
+
+echo "Creating contents"
+cat "<b1>It's working!!!<b1>" > /var/www/html/index.html
+
+echo "Copying contents"
+cp ../../home.html /var/www/html/
+
+/usr/libexec/s2i/assemble
+rc=$?
+
+if [ $rc -eq 0 ]; then
+    echo "After successful assembling"
+else
+    echo "After failed assembling"
+fi
+
+exit $rc
